@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Royal Palace™ — Prince & Princess Slumber Protocol</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --void:       #060310;
+    --deep:       #0D0818;
+    --velvet:     #130D22;
+    --chamber:    #1C1330;
+    --court:      #251840;
+    --herald:     #321F55;
+    --mist:       #6B4E8A;
+    --moonlight:  #B8A0D4;
+
+    --gold:       #FFD166;
+    --gold-dim:   #7A5800;
+    --gold-pale:  #2A1E00;
+    --gold-glow:  rgba(255,209,102,0.12);
+
+    --rose:       #FF6B9D;
+    --rose-dim:   #7A2040;
+    --rose-pale:  #28060F;
+    --rose-glow:  rgba(255,107,157,0.1);
+
+    --sapphire:   #5BB8FF;
+    --sap-dim:    #1A4A7A;
+    --sap-pale:   #001833;
+    --sap-glow:   rgba(91,184,255,0.1);
+
+    --emerald:    #2ECC8A;
+    --em-dim:     #0D6B40;
+    --em-pale:    #001F10;
+
+    --ruby:       #FF4F6B;
+
+    --silver:     #C8D8F8;
+    --white:      #F0EEFF;
+    --cream:      #FBF8FF;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  @keyframes candleFlicker {
+    0%, 100% { opacity: 0.8; transform: scaleX(1); }
+    25% { opacity: 1; transform: scaleX(1.05); }
+    50% { opacity: 0.9; transform: scaleX(0.97); }
+    75% { opacity: 1; transform: scaleX(1.03); }
+  }
+  @keyframes gemPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,209,102,0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(255,209,102,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,209,102,0); }
+  }
+  @keyframes royalBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+  @keyframes floatBanner {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-3px); }
+  }
+  @keyframes starFloat {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+    50% { transform: translateY(-6px) rotate(3deg); opacity: 1; }
+    100% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+  }
+  @keyframes coverGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.03); }
+  }
+  @keyframes coverStarDrift {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+    33% { transform: translateY(-12px) rotate(5deg); opacity: 0.9; }
+    66% { transform: translateY(-6px) rotate(-3deg); opacity: 0.6; }
+    100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+  }
+  @keyframes crownFloat {
+    0%, 100% { transform: translateY(0px) rotate(-2deg); filter: drop-shadow(0 0 18px rgba(255,209,102,0.4)); }
+    50% { transform: translateY(-14px) rotate(2deg); filter: drop-shadow(0 0 32px rgba(255,209,102,0.7)); }
+  }
+  @keyframes shimmerText {
+    0% { background-position: -200% center; }
+    100% { background-position: 200% center; }
+  }
+  @keyframes pillarsRise {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes borderPulse {
+    0%, 100% { border-color: rgba(255,209,102,0.3); }
+    50%       { border-color: rgba(255,209,102,0.7); }
+  }
+
+  body {
+    font-family: 'Crimson Pro', serif;
+    background: var(--void);
+    color: var(--white);
+    min-height: 100vh;
+    background-image:
+      radial-gradient(ellipse at 15% 10%, rgba(255,107,157,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 85%, rgba(91,184,255,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255,209,102,0.04) 0%, transparent 65%);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 5%, rgba(255,209,102,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 38% 28%, rgba(255,255,255,0.45) 0%, transparent 100%),
+      radial-gradient(1px 1px at 52% 8%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 67% 18%, rgba(255,107,157,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 82% 10%, rgba(255,255,255,0.55) 0%, transparent 100%),
+      radial-gradient(1px 1px at 91% 35%, rgba(91,184,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 4% 52%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 17% 68%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 30% 82%, rgba(255,209,102,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 72%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 61% 58%, rgba(255,107,157,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 76% 88%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 88% 70%, rgba(91,184,255,0.55) 0%, transparent 100%),
+      radial-gradient(1px 1px at 2% 88%, rgba(255,255,255,0.35) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ===== STATUS BAR ===== */
+  .status-bar {
+    background: rgba(13,8,24,0.97);
+    border-bottom: 1px solid rgba(255,209,102,0.2);
+    padding: 6px 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    color: var(--gold-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 100;
+  }
+  .sb-item { display: flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .sb-flame { font-size: 12px; animation: candleFlicker 3s infinite; display: inline-block; }
+
+  /* ===== NAV ===== */
+  .nav {
+    background: rgba(6,3,16,0.97);
+    border-bottom: 1px solid rgba(255,209,102,0.18);
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(14px);
+    box-shadow: 0 2px 24px rgba(0,0,0,0.7);
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin-right: 4px;
+  }
+  .nav-btn {
+    background: rgba(255,209,102,0.06);
+    border: 1px solid rgba(255,209,102,0.18);
+    color: rgba(255,209,102,0.6);
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 11px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .nav-btn:hover { background: rgba(255,209,102,0.12); color: var(--gold); border-color: rgba(255,209,102,0.4); }
+  .nav-btn.active { background: rgba(255,209,102,0.16); color: var(--gold); border-color: var(--gold); }
+  .print-btn {
+    margin-left: auto;
+    background: var(--gold);
+    border: none;
+    color: var(--void);
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+  }
+
+  /* ===== PAGE WRAP ===== */
+  .page-wrap { display: none; max-width: 960px; margin: 0 auto; padding: 30px 20px 70px; position: relative; z-index: 1; }
+  .page-wrap.active { display: block; }
+
+  /* ===== SHEET ===== */
+  .sheet {
+    background: var(--deep);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(255,209,102,0.18);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.6), 0 20px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.03);
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .sheet::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), var(--rose), var(--sapphire), transparent);
+    opacity: 0.5;
+  }
+
+  /* ===== SHEET HEADER ===== */
+  .sheet-header { padding: 26px 36px 20px; position: relative; overflow: hidden; }
+  .header-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .header-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: 2px;
+  }
+  .header-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 13px;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 6px;
+    opacity: 0.45;
+    letter-spacing: 1px;
+  }
+  .header-icon {
+    position: absolute;
+    right: 32px;
+    top: 50%; transform: translateY(-50%);
+    font-size: 72px;
+    opacity: 0.45;
+    animation: floatBanner 5s ease-in-out infinite;
+  }
+  .sheet-body { padding: 26px 36px; background: var(--deep); }
+
+  /* ===== FIELDS ===== */
+  .fl {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 4px;
+  }
+  .fv { border-bottom: 1px solid var(--herald); height: 28px; outline: none; font-size: 16px; font-weight: 700; }
+
+  /* ===== RITUAL STEPS ===== */
+  .ritual-step {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ritual-step::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: currentColor;
+    opacity: 0.5;
+  }
+  .ritual-step.complete { opacity: 0.5; }
+  .ritual-step.complete .rs-name { text-decoration: line-through; }
+  .rs-code {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    opacity: 0.3;
+    min-width: 36px;
+    letter-spacing: 1px;
+  }
+  .rs-icon { font-size: 26px; }
+  .rs-body { flex: 1; }
+  .rs-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .rs-sub {
+    font-family: 'Crimson Pro', serif;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.5;
+    margin-top: 2px;
+  }
+  .rs-time {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    opacity: 0.5;
+    white-space: nowrap;
+  }
+  .rs-check {
+    width: 26px; height: 26px;
+    border: 1.5px solid currentColor;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    opacity: 0.5;
+    transition: all 0.2s;
+  }
+  .ritual-step.complete .rs-check { background: currentColor; opacity: 1; color: var(--void); }
+
+  /* ===== HERALD MONITOR ===== */
+  .herald-monitor {
+    border: 1px solid var(--herald);
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--void);
+  }
+  .herald-head {
+    background: var(--chamber);
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--herald);
+  }
+  .herald-title {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .herald-row {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+  }
+  .herald-row:last-child { border-bottom: none; }
+  .hr-icon { font-size: 16px; }
+  .hr-name {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    flex: 1;
+    color: var(--moonlight);
+  }
+  .hr-status {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  /* ===== GEM TOKEN GRID ===== */
+  .gem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 10px; }
+  .gem-token {
+    border: 1px dashed var(--herald);
+    border-radius: 6px;
+    aspect-ratio: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--void);
+  }
+  .gem-token:hover { border-color: var(--gold); }
+  .gem-token.lit { border-color: var(--gold); border-style: solid; background: rgba(255,209,102,0.09); animation: gemPulse 2s infinite; }
+  .gt-icon { font-size: 20px; }
+  .gt-label {
+    font-family: 'Cinzel', serif;
+    font-size: 7px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.3;
+    color: var(--mist);
+    text-transform: uppercase;
+  }
+
+  /* ===== REALM GRID ===== */
+  .realm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 12px; }
+  .realm-node {
+    border-radius: 8px;
+    padding: 16px 12px;
+    text-align: center;
+    border: 1px solid;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+  }
+  .realm-node.dark { opacity: 0.25; filter: grayscale(1); border-style: dashed; }
+  .realm-node.lit { box-shadow: 0 0 18px rgba(255,209,102,0.2); }
+  .rn-icon { font-size: 30px; margin-bottom: 8px; display: block; }
+  .rn-name {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+  .rn-pts {
+    font-family: 'Crimson Pro', serif;
+    font-size: 10px;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 4px;
+    opacity: 0.55;
+    letter-spacing: 0.5px;
+  }
+
+  /* ===== ROYAL TITLES ===== */
+  .title-row {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 20px;
+    border-radius: 6px;
+    border: 1px solid;
+    margin-bottom: 4px;
+  }
+  .tr-icon { font-size: 32px; }
+  .tr-level {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.4;
+    margin-bottom: 3px;
+  }
+  .tr-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .tr-desc {
+    font-family: 'Crimson Pro', serif;
+    font-size: 12px;
+    font-weight: 400;
+    font-style: italic;
+    opacity: 0.55;
+    margin-top: 3px;
+  }
+  .tr-req {
+    margin-left: auto;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    text-align: right;
+    opacity: 0.55;
+    letter-spacing: 1px;
+    line-height: 1.5;
+  }
+  .title-conn { height: 14px; margin-left: 44px; border-left: 1px dashed var(--herald); }
+
+  /* ===== HERALD SCRIPTS ===== */
+  .scr-row { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 10px; align-items: center; margin-bottom: 12px; }
+  @media (max-width: 600px) { .scr-row { grid-template-columns: 1fr; } .scr-arrow { transform: rotate(90deg); margin: 10px 0; } }
+  .scr-box { border-radius: 6px; padding: 14px 16px; border: 1px solid; }
+  .scr-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 2.5px; text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .scr-text { font-family: 'Crimson Pro', serif; font-size: 13px; font-weight: 400; line-height: 1.6; font-style: italic; }
+  .scr-arrow { text-align: center; font-size: 16px; opacity: 0.4; }
+
+  /* ===== ROYAL SCROLL (Cert) ===== */
+  .scroll {
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    padding: 40px 48px;
+    text-align: center;
+    background: radial-gradient(ellipse at center, rgba(255,209,102,0.06) 0%, transparent 65%);
+    position: relative;
+    margin-bottom: 24px;
+  }
+  .scroll-corner { position: absolute; font-size: 20px; opacity: 0.2; font-family: 'Cinzel Decorative', serif; color: var(--gold); letter-spacing: 1px; }
+  .scroll-badge-icon { font-size: 56px; margin-bottom: 12px; display: block; animation: starFloat 4s ease-in-out infinite; }
+  .scroll-label {
+    font-family: 'Cinzel', serif;
+    font-size: 9px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: var(--emerald); margin-bottom: 8px;
+  }
+  .scroll-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 26px; font-weight: 900;
+    letter-spacing: 3px; color: var(--gold);
+    text-transform: uppercase; margin-bottom: 12px;
+  }
+  .scroll-sub { font-family: 'Crimson Pro', serif; font-size: 14px; color: var(--silver); margin-bottom: 18px; font-style: italic; }
+  .scroll-name-line { border-bottom: 1px solid rgba(255,209,102,0.35); width: 80%; max-width: 300px; margin: 0 auto 6px; height: 40px; }
+  .scroll-name-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px; font-weight: 700; letter-spacing: 2.5px;
+    text-transform: uppercase; color: var(--mist); margin-bottom: 18px;
+  }
+  .scroll-footer { display: flex; justify-content: space-around; margin-top: 20px; flex-wrap: wrap; gap: 20px; }
+  .scroll-sig-line { border-bottom: 1px solid rgba(255,255,255,0.1); width: 120px; margin-bottom: 6px; height: 28px; }
+  .scroll-sig-label {
+    font-family: 'Cinzel', serif;
+    font-size: 8px; font-weight: 700;
+    letter-spacing: 2px; text-transform: uppercase; color: var(--mist);
+  }
+
+  /* ===== WEEKLY CHRONICLE ===== */
+  .chron-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
+  .chron-col { border: 1px solid var(--herald); border-radius: 6px; overflow: hidden; }
+  .chron-head {
+    background: var(--chamber);
+    color: var(--gold);
+    text-align: center;
+    padding: 10px 4px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  .chron-body { padding: 10px 8px; }
+  .chron-slot { border-bottom: 1px solid var(--velvet); height: 26px; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; cursor: pointer; }
+  .chron-cb { width: 10px; height: 10px; border: 1px solid var(--herald); border-radius: 2px; flex-shrink: 0; transition: background 0.2s; }
+  .chron-cb.checked { background: var(--gold); border-color: var(--gold); }
+  .chron-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 7px; color: var(--mist);
+    font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  }
+  .chron-gems { padding: 7px; text-align: center; border-top: 1px solid var(--herald); background: var(--velvet); font-family: 'Cinzel', serif; font-size: 9px; color: var(--gold); letter-spacing: 2px; outline: none; }
+
+  /* ===== NOTE CARD ===== */
+  .note {
+    background: rgba(91,184,255,0.05);
+    border: 1px solid rgba(91,184,255,0.2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .note-text { font-family: 'Crimson Pro', serif; font-size: 13px; font-weight: 400; color: rgba(255,255,255,0.65); line-height: 1.75; }
+
+  /* ===== ROYAL BONUS ===== */
+  .royal-bonus {
+    background: rgba(255,209,102,0.06);
+    border: 1px solid rgba(255,209,102,0.28);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    display: flex; gap: 14px; align-items: center;
+  }
+
+  /* ===== REPOSE CARDS ===== */
+  .repose-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  .repose-card { border-radius: 6px; padding: 18px 14px; border: 1px solid; text-align: center; }
+  .rp-icon { font-size: 34px; display: block; margin-bottom: 8px; }
+  .rp-title { font-family: 'Cinzel', serif; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 7px; }
+  .rp-desc { font-family: 'Crimson Pro', serif; font-size: 12px; font-weight: 400; font-style: italic; opacity: 0.65; line-height: 1.65; }
+
+  /* ===== DIVIDER ===== */
+  .royal-divider {
+    display: flex; align-items: center; gap: 12px;
+    margin: 20px 0;
+    color: rgba(255,209,102,0.3);
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14px;
+    letter-spacing: 4px;
+  }
+  .royal-divider::before, .royal-divider::after {
+    content: '';
+    flex: 1;
+    border-top: 1px solid rgba(255,209,102,0.18);
+  }
+
+  /* ===== ORNAMENT BORDER ===== */
+  .ornament-box {
+    border: 1px solid rgba(255,209,102,0.2);
+    border-radius: 6px;
+    position: relative;
+    padding: 20px;
+  }
+  .ornament-box::before, .ornament-box::after {
+    content: '❧';
+    position: absolute;
+    top: -10px;
+    font-size: 18px;
+    color: rgba(255,209,102,0.4);
+    background: var(--deep);
+    padding: 0 6px;
+  }
+  .ornament-box::before { left: 20px; }
+  .ornament-box::after { right: 20px; }
+
+  /* ===== COVER PAGE ===== */
+  #page-cover {
+    max-width: 100%;
+    padding: 0;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #page-cover.active { display: flex; }
+
+  .cover-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,209,102,0.12) 0%, transparent 55%),
+      radial-gradient(ellipse at 0% 100%, rgba(255,107,157,0.10) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, rgba(91,184,255,0.08) 0%, transparent 50%),
+      linear-gradient(180deg, #04020e 0%, #0a0618 40%, #110b20 70%, #060310 100%);
+    z-index: 0;
+  }
+
+  /* Floating orbs */
+  .cover-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Decorative arch silhouette */
+  .cover-arch {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 420px;
+    z-index: 0;
+    opacity: 0.04;
+  }
+
+  .cover-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 60px 40px;
+    max-width: 800px;
+    width: 100%;
+    animation: pillarsRise 1.2s ease-out both;
+  }
+
+  /* Top crest strip */
+  .cover-crest-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 28px;
+    animation: fadeIn 1s ease-out 0.2s both;
+  }
+  .cover-crest-line {
+    flex: 1;
+    max-width: 160px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,209,102,0.5));
+  }
+  .cover-crest-line.right {
+    background: linear-gradient(270deg, transparent, rgba(255,209,102,0.5));
+  }
+  .cover-crest-text {
+    font-family: 'Cinzel', serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,209,102,0.55);
+  }
+
+  /* Crown centrepiece */
+  .cover-crown {
+    font-size: 88px;
+    display: block;
+    margin: 0 auto 20px;
+    animation: crownFloat 6s ease-in-out infinite;
+    filter: drop-shadow(0 0 28px rgba(255,209,102,0.5));
+  }
+
+  /* Main title */
+  .cover-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(11px, 2vw, 14px);
+    font-weight: 700;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: 10px;
+    animation: fadeIn 1s ease-out 0.4s both;
+  }
+
+  .cover-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(36px, 7vw, 72px);
+    font-weight: 900;
+    line-height: 1.05;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #FFE08A 0%, #FFD166 25%, #FFF4C2 50%, #FFD166 75%, #C8960A 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerText 4s linear infinite, fadeIn 1s ease-out 0.5s both;
+    margin-bottom: 6px;
+  }
+
+  .cover-subtitle-royal {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(18px, 3.5vw, 32px);
+    font-weight: 700;
+    color: rgba(255,255,255,0.15);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeIn 1s ease-out 0.6s both;
+  }
+
+  /* Gem row */
+  .cover-gems {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px 0 22px;
+    animation: fadeIn 1s ease-out 0.7s both;
+  }
+  .cover-gem-item { font-size: 20px; animation: coverStarDrift ease-in-out infinite; }
+  .cover-gem-item:nth-child(1) { animation-duration: 4.0s; animation-delay: 0.0s; }
+  .cover-gem-item:nth-child(2) { animation-duration: 4.8s; animation-delay: 0.5s; }
+  .cover-gem-item:nth-child(3) { animation-duration: 3.6s; animation-delay: 1.0s; }
+  .cover-gem-item:nth-child(4) { animation-duration: 5.2s; animation-delay: 0.3s; }
+  .cover-gem-item:nth-child(5) { animation-duration: 4.4s; animation-delay: 0.8s; }
+  .cover-gem-divider { width: 1px; height: 18px; background: rgba(255,209,102,0.25); }
+
+  /* Tagline */
+  .cover-tagline {
+    font-family: 'Crimson Pro', serif;
+    font-size: clamp(13px, 2.2vw, 18px);
+    font-weight: 400;
+    font-style: italic;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 1.5px;
+    line-height: 1.7;
+    max-width: 540px;
+    margin: 0 auto 32px;
+    animation: fadeIn 1s ease-out 0.8s both;
+  }
+
+  /* Royal duo cards */
+  .cover-duo {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    animation: fadeIn 1s ease-out 0.9s both;
+  }
+  .cover-duo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 28px;
+    border-radius: 12px;
+    border: 1px solid;
+    min-width: 140px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+    cursor: default;
+  }
+  .cover-duo-card:hover { transform: translateY(-4px); }
+  .cover-duo-card.prince {
+    background: linear-gradient(155deg, rgba(91,184,255,0.08), rgba(6,3,16,0.6));
+    border-color: rgba(91,184,255,0.3);
+    box-shadow: 0 0 28px rgba(91,184,255,0.08), inset 0 1px 0 rgba(91,184,255,0.1);
+  }
+  .cover-duo-card.princess {
+    background: linear-gradient(155deg, rgba(255,107,157,0.08), rgba(6,3,16,0.6));
+    border-color: rgba(255,107,157,0.3);
+    box-shadow: 0 0 28px rgba(255,107,157,0.08), inset 0 1px 0 rgba(255,107,157,0.1);
+  }
+  .cover-duo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .cover-duo-card.prince::before { background: linear-gradient(90deg, transparent, var(--sapphire), transparent); }
+  .cover-duo-card.princess::before { background: linear-gradient(90deg, transparent, var(--rose), transparent); }
+  .cover-duo-emoji { font-size: 40px; }
+  .cover-duo-title {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+  }
+  .cover-duo-name {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .cover-duo-card.prince .cover-duo-name { color: var(--sapphire); }
+  .cover-duo-card.princess .cover-duo-name { color: var(--rose); }
+
+  /* Feature pills */
+  .cover-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 36px;
+    animation: fadeIn 1s ease-out 1.0s both;
+  }
+  .cover-pill {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,209,102,0.18);
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255,209,102,0.55);
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .cover-pill:hover {
+    background: rgba(255,209,102,0.07);
+    border-color: rgba(255,209,102,0.4);
+    color: var(--gold);
+  }
+  .cover-pill span { font-size: 12px; }
+
+  /* Begin CTA */
+  .cover-cta {
+    animation: fadeIn 1s ease-out 1.1s both;
+  }
+  .cover-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #FFD166, #C8960A);
+    border: none;
+    border-radius: 6px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--void);
+    cursor: pointer;
+    box-shadow: 0 0 30px rgba(255,209,102,0.25), 0 4px 20px rgba(0,0,0,0.5);
+    transition: all 0.3s;
+    animation: borderPulse 3s ease-in-out infinite;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-cta-btn::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
+    transition: left 0.5s;
+  }
+  .cover-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 50px rgba(255,209,102,0.4), 0 8px 30px rgba(0,0,0,0.6);
+  }
+  .cover-cta-btn:hover::before { left: 150%; }
+  .cover-cta-icon { font-size: 18px; }
+
+  /* Bottom seal */
+  .cover-seal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 32px;
+    animation: fadeIn 1s ease-out 1.2s both;
+  }
+  .cover-seal-line { flex: 1; max-width: 120px; height: 1px; background: rgba(255,255,255,0.08); }
+  .cover-seal-text {
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.18);
+  }
+  .cover-seal-items { display: flex; gap: 8px; font-size: 12px; }
+
+  @media print {
+    body { background: #060310 !important; }
+    .nav, .status-bar { display: none !important; }
+    .page-wrap { display: block !important; padding: 0; max-width: 100%; }
+    .sheet { box-shadow: none; border-radius: 0; page-break-after: always; margin-bottom: 0; border-color: #000; }
+    .ritual-step, .block-panel, .realm-node, .id-card { border-color: #000 !important; color: #000 !important; background: #fff !important; }
+    body::before { display: none; }
+    .page-wrap:not(.active) { display: none !important; }
+    #page-cover.active { min-height: 100vh; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="sb-item"><span class="sb-flame">🕯️</span><span>Royal Court: Assembled</span></div>
+  <div class="sb-item"><span class="sb-flame">🌙</span><span>Slumber Protocol: Ready</span></div>
+  <div class="sb-item"><span class="sb-flame">💎</span><span>Gem Vault: Awaiting</span></div>
+  <div class="sb-item" style="margin-left:auto;color:rgba(255,255,255,0.2);">THE ROYAL PALACE™ — SLUMBER PROTOCOL</div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <div>👑</div>
+  <div class="nav-logo">The Royal Palace™</div>
+  <button class="nav-btn active" onclick="showPage('cover', this)">✨ Cover</button>
+  <button class="nav-btn" onclick="showPage('court', this)">Royal Court</button>
+  <button class="nav-btn" onclick="showPage('decree', this)">Royal Decree</button>
+  <button class="nav-btn" onclick="showPage('ritual', this)">Ritual Cards</button>
+  <button class="nav-btn" onclick="showPage('gems', this)">Gem Vault</button>
+  <button class="nav-btn" onclick="showPage('repose', this)">Repose</button>
+  <button class="nav-btn" onclick="showPage('kingdoms', this)">Kingdom Map</button>
+  <button class="nav-btn" onclick="showPage('herald', this)">Scripts</button>
+  <button class="nav-btn" onclick="showPage('chronicle', this)">Chronicle</button>
+  <button class="nav-btn" onclick="showPage('scrolls', this)">Scrolls</button>
+  <button class="nav-btn" onclick="showPage('brief', this)">Brief</button>
+  <button class="print-btn" onclick="window.print()">🖨 PRINT</button>
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<!-- COVER PAGE -->
+<!-- ═══════════════════════════════════════════════════════════════ -->
+<div class="page-wrap active" id="page-cover">
+
+  <!-- Background layers -->
+  <div class="cover-bg"></div>
+
+  <!-- Floating orbs -->
+  <div class="cover-orb" style="width:500px;height:500px;background:radial-gradient(circle,rgba(255,209,102,0.06),transparent 70%);top:-120px;left:50%;transform:translateX(-50%);animation:coverGlow 8s ease-in-out infinite;"></div>
+  <div class="cover-orb" style="width:320px;height:320px;background:radial-gradient(circle,rgba(255,107,157,0.07),transparent 70%);bottom:80px;left:-60px;animation:coverGlow 10s ease-in-out 2s infinite;"></div>
+  <div class="cover-orb" style="width:260px;height:260px;background:radial-gradient(circle,rgba(91,184,255,0.06),transparent 70%);bottom:100px;right:-40px;animation:coverGlow 9s ease-in-out 1s infinite;"></div>
+
+  <!-- Castle arch silhouette SVG -->
+  <svg class="cover-arch" viewBox="0 0 700 420" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="380" width="700" height="40" fill="white"/>
+    <rect x="40" y="200" width="80" height="180" fill="white"/>
+    <rect x="580" y="200" width="80" height="180" fill="white"/>
+    <rect x="160" y="250" width="80" height="130" fill="white"/>
+    <rect x="460" y="250" width="80" height="130" fill="white"/>
+    <rect x="280" y="180" width="140" height="200" fill="white"/>
+    <!-- Battlements -->
+    <rect x="40" y="180" width="16" height="24" fill="white"/><rect x="60" y="192" width="16" height="12" fill="white"/><rect x="80" y="180" width="16" height="24" fill="white"/><rect x="100" y="192" width="20" height="12" fill="white"/>
+    <rect x="580" y="180" width="16" height="24" fill="white"/><rect x="600" y="192" width="16" height="12" fill="white"/><rect x="620" y="180" width="16" height="24" fill="white"/><rect x="640" y="192" width="20" height="12" fill="white"/>
+    <rect x="160" y="230" width="14" height="22" fill="white"/><rect x="178" y="242" width="14" height="10" fill="white"/><rect x="196" y="230" width="14" height="22" fill="white"/><rect x="214" y="242" width="26" height="10" fill="white"/>
+    <rect x="460" y="230" width="14" height="22" fill="white"/><rect x="478" y="242" width="14" height="10" fill="white"/><rect x="496" y="230" width="14" height="22" fill="white"/><rect x="514" y="242" width="26" height="10" fill="white"/>
+    <rect x="280" y="158" width="16" height="26" fill="white"/><rect x="300" y="170" width="16" height="14" fill="white"/><rect x="320" y="158" width="16" height="26" fill="white"/><rect x="340" y="170" width="20" height="14" fill="white"/><rect x="364" y="158" width="16" height="26" fill="white"/><rect x="384" y="170" width="16" height="14" fill="white"/><rect x="404" y="158" width="16" height="26" fill="white"/>
+    <!-- Windows & arched gate -->
+    <ellipse cx="350" cy="295" rx="36" ry="50" fill="none" stroke="white" stroke-width="4"/>
+    <rect x="314" y="295" width="72" height="85" fill="white"/>
+    <ellipse cx="200" cy="290" rx="18" ry="26" fill="none" stroke="white" stroke-width="3"/>
+    <ellipse cx="500" cy="290" rx="18" ry="26" fill="none" stroke="white" stroke-width="3"/>
+    <!-- Flags -->
+    <line x1="80" y1="180" x2="80" y2="130" stroke="white" stroke-width="2"/>
+    <polygon points="80,130 105,143 80,156" fill="white" opacity="0.6"/>
+    <line x1="350" y1="158" x2="350" y2="100" stroke="white" stroke-width="2"/>
+    <polygon points="350,100 382,116 350,132" fill="white" opacity="0.6"/>
+    <line x1="620" y1="180" x2="620" y2="130" stroke="white" stroke-width="2"/>
+    <polygon points="620,130 595,143 620,156" fill="white" opacity="0.6"/>
+  </svg>
+
+  <!-- Main content -->
+  <div class="cover-content">
+
+    <!-- Top crest strip -->
+    <div class="cover-crest-strip">
+      <div class="cover-crest-line"></div>
+      <div style="font-size:16px;">⚜️</div>
+      <div class="cover-crest-text">An Official Royal Palace™ Publication</div>
+      <div style="font-size:16px;">⚜️</div>
+      <div class="cover-crest-line right"></div>
+    </div>
+
+    <!-- Crown -->
+    <span class="cover-crown">👑</span>
+
+    <!-- Brand + Title -->
+    <div class="cover-brand">The Royal Palace™ Presents</div>
+    <div class="cover-title">Slumber<br>Protocol</div>
+    <div class="cover-subtitle-royal">Prince &amp; Princess Edition</div>
+
+    <!-- Gem row -->
+    <div class="cover-gems">
+      <span class="cover-gem-item">🤴</span>
+      <div class="cover-gem-divider"></div>
+      <span class="cover-gem-item">🌙</span>
+      <div class="cover-gem-divider"></div>
+      <span class="cover-gem-item">💎</span>
+      <div class="cover-gem-divider"></div>
+      <span class="cover-gem-item">🌙</span>
+      <div class="cover-gem-divider"></div>
+      <span class="cover-gem-item">👸</span>
+    </div>
+
+    <!-- Tagline -->
+    <div class="cover-tagline">
+      A gamified bedtime system for young royals — transforming the evening ceremony into a legendary quest, one gem at a time.
+    </div>
+
+    <!-- Prince & Princess cards -->
+    <div class="cover-duo">
+      <div class="cover-duo-card prince">
+        <span class="cover-duo-emoji">🤴</span>
+        <div class="cover-duo-title">His Royal Highness</div>
+        <div class="cover-duo-name">The Prince</div>
+      </div>
+      <div style="display:flex;align-items:center;">
+        <div style="font-family:'Cinzel Decorative',serif;font-size:18px;color:rgba(255,209,102,0.3);letter-spacing:2px;">&amp;</div>
+      </div>
+      <div class="cover-duo-card princess">
+        <span class="cover-duo-emoji">👸</span>
+        <div class="cover-duo-title">Her Royal Highness</div>
+        <div class="cover-duo-name">The Princess</div>
+      </div>
+    </div>
+
+    <!-- Feature pills -->
+    <div class="cover-features">
+      <div class="cover-pill"><span>📜</span> 10 Royal Sections</div>
+      <div class="cover-pill"><span>💎</span> Gem Reward System</div>
+      <div class="cover-pill"><span>🗺️</span> Kingdom Map</div>
+      <div class="cover-pill"><span>🏆</span> Coronation Scrolls</div>
+      <div class="cover-pill"><span>🌿</span> Repose Protocols</div>
+      <div class="cover-pill"><span>📅</span> Weekly Chronicle</div>
+      <div class="cover-pill"><span>🖨️</span> Print Ready</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cover-cta">
+      <button class="cover-cta-btn" onclick="showPage('court', document.querySelector('.nav-btn:nth-child(3)'))">
+        <span class="cover-cta-icon">⚜️</span>
+        Enter the Royal Court
+        <span class="cover-cta-icon">⚜️</span>
+      </button>
+    </div>
+
+    <!-- Bottom seal -->
+    <div class="cover-seal">
+      <div class="cover-seal-line"></div>
+      <div class="cover-seal-items">🕯️ &nbsp; 🏰 &nbsp; 🌙</div>
+      <div class="cover-seal-text">The Evening Ceremony Awaits</div>
+      <div class="cover-seal-items">🌙 &nbsp; 🏰 &nbsp; 🕯️</div>
+      <div class="cover-seal-line"></div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ROYAL COURT (HQ) -->
+<div class="page-wrap" id="page-court">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--chamber));">
+    <div class="header-tag" style="color:var(--rose);">👑 INITIATING ROYAL SLUMBER — T-MINUS 60 MINUTES</div>
+    <div class="header-title" style="color:var(--white);">THE ROYAL PALACE™<br><span style="color:var(--gold);">Grand Court</span></div>
+    <div class="header-sub">Slumber Protocol HQ — The Evening Ceremony Begins Now</div>
+    <div class="header-icon">🏰</div>
+  </div>
+  <div class="sheet-body">
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(150px, 1fr));gap:14px;margin-bottom:22px;">
+      <div><div class="fl">Royal Name</div><div class="fv" contenteditable="true"></div></div>
+      <div><div class="fl">Date of Ceremony</div><div class="fv" contenteditable="true"></div></div>
+      <div><div class="fl">Royal Title</div><div class="fv" contenteditable="true"></div></div>
+      <div><div class="fl">Candles Out</div><div class="fv" contenteditable="true"></div></div>
+    </div>
+
+    <div class="royal-bonus">
+      <span style="font-size:30px;">💎</span>
+      <div>
+        <div style="font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">Royal Arrival Bonus — 2 Free Gems Bestowed!</div>
+        <div style="font-family:'Crimson Pro',serif;font-size:13px;font-style:italic;color:rgba(255,255,255,0.4);margin-top:4px;">You have graced the Royal Court — 2 gems are already added to your vault. The kingdom celebrates your arrival! ✨</div>
+      </div>
+    </div>
+
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));gap:22px;">
+
+      <!-- EVENING CEREMONY -->
+      <div>
+        <div style="font-family:'Cinzel Decorative',serif;font-size:13px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">⚜️ Evening Ceremony</div>
+
+        <div class="ritual-step" style="background:rgba(46,204,138,0.05);border-color:rgba(46,204,138,0.25);color:var(--emerald);" onclick="toggleStep(this)">
+          <div class="rs-code">R-01</div><div class="rs-icon">🪥</div>
+          <div class="rs-body"><div class="rs-name">Royal Cleanse</div><div class="rs-sub">Brush teeth — seal the royal smile</div></div>
+          <div class="rs-time">5 MIN</div><div class="rs-check"></div>
+        </div>
+
+        <div class="ritual-step" style="background:rgba(91,184,255,0.05);border-color:rgba(91,184,255,0.2);color:var(--sapphire);" onclick="toggleStep(this)">
+          <div class="rs-code">R-02</div><div class="rs-icon">🧴</div>
+          <div class="rs-body"><div class="rs-name">Chamber Wash</div><div class="rs-sub">Wash face and hands — prepare the royal visage</div></div>
+          <div class="rs-time">5 MIN</div><div class="rs-check"></div>
+        </div>
+
+        <div class="ritual-step" style="background:rgba(255,209,102,0.05);border-color:rgba(255,209,102,0.2);color:var(--gold);" onclick="toggleStep(this)">
+          <div class="rs-code">R-03</div><div class="rs-icon">🌙</div>
+          <div class="rs-body"><div class="rs-name">Royal Garments</div><div class="rs-sub">Don the sleeping robes — prepared with honour</div></div>
+          <div class="rs-time">5 MIN</div><div class="rs-check"></div>
+        </div>
+
+        <div class="ritual-step" style="background:rgba(255,107,157,0.06);border-color:rgba(255,107,157,0.22);color:var(--rose);" onclick="toggleStep(this)">
+          <div class="rs-code">R-04</div><div class="rs-icon">📜</div>
+          <div class="rs-body"><div class="rs-name">Court Dismissed</div><div class="rs-sub">All screens off — messengers stand down</div></div>
+          <div class="rs-time">T-30 MIN</div><div class="rs-check"></div>
+        </div>
+
+        <div class="ritual-step" style="background:rgba(46,204,138,0.04);border-color:rgba(46,204,138,0.2);color:var(--emerald);" onclick="toggleStep(this)">
+          <div class="rs-code">R-05</div><div class="rs-icon">🛏️</div>
+          <div class="rs-body"><div class="rs-name">Royal Chambers</div><div class="rs-sub">Into the royal bed — throne of dreams</div></div>
+          <div class="rs-time">RETIRE</div><div class="rs-check"></div>
+        </div>
+
+        <div class="ritual-step" style="background:rgba(91,184,255,0.04);border-color:rgba(91,184,255,0.15);color:var(--sapphire);" onclick="toggleStep(this)">
+          <div class="rs-code">R-06</div><div class="rs-icon">📖</div>
+          <div class="rs-body"><div class="rs-name">Evening Tales</div><div class="rs-sub">Stories or quiet contemplation — 15 min of peace</div></div>
+          <div class="rs-time">15 MIN</div><div class="rs-check"></div>
+        </div>
+      </div>
+
+      <!-- RIGHT COL -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
+
+        <!-- HERALD MONITOR -->
+        <div class="herald-monitor">
+          <div class="herald-head">
+            <span style="width:8px;height:8px;border-radius:50%;background:var(--gold);animation:royalBlink 2.5s infinite;display:inline-block;"></span>
+            <div class="herald-title">Royal Ceremony Monitor</div>
+          </div>
+          <div class="herald-row" onclick="cycleHerald(this)">
+            <span class="hr-icon">🪥</span>
+            <span class="hr-name">Royal Cleanse</span>
+            <span class="hr-status" style="color:var(--mist);">◉ AWAITING</span>
+          </div>
+          <div class="herald-row" onclick="cycleHerald(this)">
+            <span class="hr-icon">🧴</span>
+            <span class="hr-name">Chamber Wash</span>
+            <span class="hr-status" style="color:var(--mist);">◉ AWAITING</span>
+          </div>
+          <div class="herald-row" onclick="cycleHerald(this)">
+            <span class="hr-icon">🌙</span>
+            <span class="hr-name">Royal Garments</span>
+            <span class="hr-status" style="color:var(--mist);">◉ AWAITING</span>
+          </div>
+          <div class="herald-row" onclick="cycleHerald(this)">
+            <span class="hr-icon">📜</span>
+            <span class="hr-name">Court Dismissed</span>
+            <span class="hr-status" style="color:var(--mist);">◉ AWAITING</span>
+          </div>
+          <div class="herald-row" onclick="cycleHerald(this)">
+            <span class="hr-icon">🛏️</span>
+            <span class="hr-name">Royal Chambers</span>
+            <span class="hr-status" style="color:var(--mist);">◉ AWAITING</span>
+          </div>
+        </div>
+
+        <!-- ROYAL POWER METER -->
+        <div style="background:var(--velvet);border:1px solid var(--herald);border-radius:6px;padding:14px 16px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+            <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);text-transform:uppercase;">⚜️ Royal Vigour</div>
+            <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;color:var(--mist);" id="powerLabel">0% / 100%</div>
+          </div>
+          <div style="background:var(--void);border-radius:4px;height:12px;overflow:hidden;border:1px solid var(--herald);">
+            <div id="powerBar" style="height:100%;border-radius:4px;width:0%;transition:width 0.4s;background:linear-gradient(90deg,var(--emerald),var(--sapphire),var(--rose),var(--gold));"></div>
+          </div>
+          <div style="margin-top:8px;font-family:'Cinzel',serif;font-size:8px;color:var(--mist);letter-spacing:1.5px;text-transform:uppercase;">Complete all rituals → Full Royal Vigour</div>
+        </div>
+
+        <!-- EVENING DEBRIEF -->
+        <div style="background:var(--velvet);border:1px solid var(--herald);border-radius:6px;padding:14px 16px;">
+          <div style="font-family:'Cinzel',serif;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--sapphire);text-transform:uppercase;margin-bottom:12px;">📜 Evening Court Report</div>
+          <div style="margin-bottom:10px;">
+            <div style="font-family:'Cinzel',serif;font-size:8px;font-weight:600;color:var(--mist);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Greatest deed of the day</div>
+            <div class="fv" contenteditable="true" style="border-bottom:1px dashed var(--herald);min-height:22px;"></div>
+          </div>
+          <div style="margin-bottom:10px;">
+            <div style="font-family:'Cinzel',serif;font-size:8px;font-weight:600;color:var(--mist);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Wisdom learned today</div>
+            <div class="fv" contenteditable="true" style="border-bottom:1px dashed var(--herald);min-height:22px;"></div>
+          </div>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:8px;font-weight:600;color:var(--mist);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px;">Tomorrow I shall conquer</div>
+            <div class="fv" contenteditable="true" style="border-bottom:1px dashed var(--herald);min-height:22px;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="royal-divider">❦</div>
+    <div style="text-align:center;font-family:'Cinzel',serif;font-size:9px;font-weight:600;color:var(--mist);letter-spacing:2.5px;text-transform:uppercase;">
+      The Royal Palace™ · Slumber Protocol · <span style="color:var(--gold);">💎 Every ceremony earns a gem in the Royal Vault</span>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ROYAL DECREE (ID Card) -->
+<div class="page-wrap" id="page-decree">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--chamber));">
+    <div class="header-tag" style="color:var(--gold);">✂️ PRINT — LAMINATE — DISPLAY IN THE ROYAL CHAMBER</div>
+    <div class="header-title" style="color:var(--white);">ROYAL DECREE<br><span style="color:var(--gold);">& Court Credentials</span></div>
+    <div class="header-sub">Official Royal Palace Identification</div>
+    <div class="header-icon">📜</div>
+  </div>
+  <div class="sheet-body">
+    <div style="text-align:center;font-family:'Cinzel',serif;font-size:9px;font-weight:700;color:var(--mist);letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;display:flex;align-items:center;gap:8px;justify-content:center;">
+      <div style="flex:1;border-top:1px dashed var(--herald);"></div>✂ CUT ALONG ROYAL SEAL<div style="flex:1;border-top:1px dashed var(--herald);"></div>
+    </div>
+
+    <div style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;align-items:flex-start;">
+
+      <!-- Prince Card -->
+      <div style="width:250px;background:linear-gradient(155deg,var(--chamber),var(--void));border-radius:10px;padding:22px 20px;border:1px solid rgba(91,184,255,0.3);position:relative;overflow:hidden;box-shadow:0 0 30px rgba(91,184,255,0.08);">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--sapphire),var(--gold),var(--sapphire));opacity:0.7;"></div>
+        <div style="font-family:'Cinzel Decorative',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--sapphire);text-align:center;margin-bottom:14px;">THE ROYAL PALACE™</div>
+        <div style="text-align:center;margin-bottom:12px;"><div style="font-size:10px;font-weight:700;font-family:'Cinzel',serif;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">HIS ROYAL HIGHNESS</div></div>
+        <div style="width:70px;height:70px;border-radius:50%;border:2px solid rgba(91,184,255,0.35);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 16px;background:var(--velvet);">🤴</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--sapphire);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Prince's Name</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--sapphire);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Kingdom</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--sapphire);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Royal Quest</div><div id="princeQuest" class="fv" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:10px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--sapphire);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Crest No.</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+        </div>
+        <div style="margin-top:14px;background:var(--sapphire);border-radius:5px;padding:9px 12px;">
+          <div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--void);opacity:0.6;text-transform:uppercase;">Royal Standing</div>
+          <div style="font-family:'Cinzel Decorative',serif;font-size:13px;font-weight:700;color:var(--void);letter-spacing:1px;">⚔️ Page of the Realm</div>
+        </div>
+      </div>
+
+      <!-- Princess Card -->
+      <div style="width:250px;background:linear-gradient(155deg,var(--chamber),var(--void));border-radius:10px;padding:22px 20px;border:1px solid rgba(255,107,157,0.3);position:relative;overflow:hidden;box-shadow:0 0 30px rgba(255,107,157,0.08);">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--rose),var(--gold),var(--rose));opacity:0.7;"></div>
+        <div style="font-family:'Cinzel Decorative',serif;font-size:8px;font-weight:700;letter-spacing:2px;color:var(--rose);text-align:center;margin-bottom:14px;">THE ROYAL PALACE™</div>
+        <div style="text-align:center;margin-bottom:12px;"><div style="font-size:10px;font-weight:700;font-family:'Cinzel',serif;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;">HER ROYAL HIGHNESS</div></div>
+        <div style="width:70px;height:70px;border-radius:50%;border:2px solid rgba(255,107,157,0.35);display:flex;align-items:center;justify-content:center;font-size:34px;margin:0 auto 16px;background:var(--velvet);">👸</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--rose);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Princess's Name</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--rose);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Kingdom</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--rose);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Royal Quest</div><div id="princessQuest" class="fv" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:10px;"></div></div>
+          <div><div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--rose);opacity:0.7;text-transform:uppercase;margin-bottom:2px;">Crest No.</div><div class="fv" contenteditable="true" style="border-bottom:1px solid rgba(255,255,255,0.1);height:22px;font-size:12px;"></div></div>
+        </div>
+        <div style="margin-top:14px;background:var(--rose);border-radius:5px;padding:9px 12px;">
+          <div style="font-family:'Cinzel',serif;font-size:7px;font-weight:700;letter-spacing:2px;color:var(--void);opacity:0.6;text-transform:uppercase;">Royal Standing</div>
+          <div style="font-family:'Cinzel Decorative',serif;font-size:13px;font-weight:700;color:var(--void);letter-spacing:1px;">🌸 Lady of the Court</div>
+        </div>
+      </div>
+
+      <!-- Royal Quest picker -->
+      <div style="background:rgba(255,255,255,0.02);border:1px dashed var(--herald);border-radius:8px;padding:18px;min-width:200px;">
+        <div style="font-family:'Cinzel Decorative',serif;font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--gold);text-transform:uppercase;margin-bottom:14px;">⚜️ Choose Royal Quest</div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div class="quest-opt" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid var(--herald);cursor:pointer;" onclick="selectQuest('Dragon Tamer')">
+            <span style="font-size:18px;">🐉</span><span style="font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Dragon Tamer</span>
+          </div>
+          <div class="quest-opt" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid var(--herald);cursor:pointer;" onclick="selectQuest('Enchanter')">
+            <span style="font-size:18px;">🔮</span><span style="font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Enchanter</span>
+          </div>
+          <div class="quest-opt" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid var(--herald);cursor:pointer;" onclick="selectQuest('Knight Errant')">
+            <span style="font-size:18px;">🗡️</span><span style="font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Knight Errant</span>
+          </div>
+          <div class="quest-opt" style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid var(--herald);cursor:pointer;" onclick="selectQuest('Royal Healer')">
+            <span style="font-size:18px;">🌿</span><span style="font-family:'Cinzel',serif;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;">Royal Healer</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.03);border:1px solid var(--herald);">
+            <span style="font-size:18px;">✨</span><span style="font-family:'Cinzel',serif;font-weight:700;font-size:10px;text-transform:uppercase;">My Quest: </span><span class="fv" contenteditable="true" style="flex:1; border-bottom: none; height: auto;" oninput="selectQuest(this.innerText)"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- SLUMBER RITUAL -->
+<div class="page-wrap" id="page-ritual">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--court));">
+    <div class="header-tag" style="color:var(--rose);">⚜️ Full Evening Ceremony Sequence</div>
+    <div class="header-title" style="color:var(--white);">SLUMBER<br><span style="color:var(--gold);">Ritual Cards</span></div>
+    <div class="header-sub">Step-by-step ceremony cards — one at a time, young Royal</div>
+    <div class="header-icon">🕯️</div>
+  </div>
+  <div class="sheet-body">
+    <div class="note"><span style="font-size:24px;">👑</span><div class="note-text">Royal Herald's tip: The most powerful ritual words are specific and clear. Don't say "get ready for bed" — say "WALK to the washroom, PICK UP the royal toothbrush, PLACE the paste upon it." A clear decree leaves no room for debate at the castle gates.</div></div>
+    <div style="display:grid;grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));gap:18px;">
+
+      <div style="background:rgba(46,204,138,0.04);border:1px solid rgba(46,204,138,0.2);border-radius:8px;padding:18px 16px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="font-size:28px;">🪥</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:1.5px;color:var(--emerald);text-transform:uppercase;">Royal Cleanse</div>
+            <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--mist);text-transform:uppercase;">+1 💎 per deed</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(46,204,138,0.12);margin-bottom:8px; cursor: pointer;" onclick="this.querySelector('.check-mark').classList.toggle('active')">
+          <div class="check-mark" style="width:16px;height:16px;border:1.5px solid rgba(46,204,138,0.35);border-radius:3px;flex-shrink:0;"></div>
+          <style>.check-mark.active { background: var(--emerald); border-color: var(--emerald); }</style>
+          <div style="flex:1;font-family:'Cinzel',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">BRUSH teeth — top and bottom</div>
+          <span style="font-size:11px;opacity:0.25;">💎</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(46,204,138,0.12);margin-bottom:8px; cursor: pointer;" onclick="this.querySelector('.check-mark').classList.toggle('active')">
+          <div class="check-mark" style="width:16px;height:16px;border:1.5px solid rgba(46,204,138,0.35);border-radius:3px;flex-shrink:0;"></div>
+          <div style="flex:1;font-family:'Cinzel',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">RINSE — count to thirty</div>
+          <span style="font-size:11px;opacity:0.25;">💎</span>
+        </div>
+      </div>
+
+      <div style="background:rgba(91,184,255,0.04);border:1px solid rgba(91,184,255,0.18);border-radius:8px;padding:18px 16px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;">
+          <span style="font-size:28px;">🧴</span>
+          <div>
+            <div style="font-family:'Cinzel',serif;font-size:14px;font-weight:700;letter-spacing:1.5px;color:var(--sapphire);text-transform:uppercase;">Chamber Wash</div>
+            <div style="font-family:'Cinzel',serif;font-size:9px;font-weight:600;letter-spacing:1.5px;color:var(--mist);text-transform:uppercase;">+1 💎 per deed</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(91,184,255,0.12);margin-bottom:8px; cursor: pointer;" onclick="this.querySelector('.check-mark-s').classList.toggle('active')">
+          <div class="check-mark-s" style="width:16px;height:16px;border:1.5px solid rgba(91,184,255,0.35);border-radius:3px;flex-shrink:0;"></div>
+          <style>.check-mark-s.active { background: var(--sapphire); border-color: var(--sapphire); }</style>
+          <div style="flex:1;font-family:'Cinzel',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">WASH face with warm water</div>
+          <span style="font-size:11px;opacity:0.25;">💎</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:5px;background:rgba(255,255,255,0.04);border:1px solid rgba(91,184,255,0.12);margin-bottom:8px; cursor: pointer;" onclick="this.querySelector('.check-mark-s').classList.toggle('active')">
+          <div class="check-mark-s" style="width:16px;height:16px;border:1.5px solid rgba(91,184,255,0.35);border-radius:3px;flex-shrink:0;"></div>
+          <div style="flex:1;font-family:'Cinzel',serif;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;">DRY with the royal cloth</div>
+          <span style="font-size:11px;opacity:0.25;">💎</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Custom ritual -->
+    <div style="margin-top:16px;border:1px dashed var(--herald);border-radius:8px;padding:18px;">
+      <div style="font-family:'Cinzel Decorative',serif;font-size:12px;font-weight:700;letter-spacing:1.5px;color:var(--mist);text-transform:uppercase;margin-bottom:14px;">🏰 My Own Royal Custom Decree</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;">
+        <div><div class="fl">Ceremony Name</div><div class="fv" contenteditable="true"></div></div>
+        <div><div class="fl">Gem Reward Rule</div><div class="fv" contenteditable="true"></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- GEM VAULT (Star Log) -->
+<div class="page-wrap" id="page-gems">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--deep));">
+    <div class="header-tag" style="color:var(--gold);">💎 Royal Treasure Collection</div>
+    <div class="header-title" style="color:var(--white);">GEM VAULT<br><span style="color:var(--gold);">Royal Treasures</span></div>
+    <div class="header-sub">Every 3 ceremony deeds earns a gem. Fill the vault to unlock a new realm!</div>
+    <div class="header-icon">💰</div>
+  </div>
+  <div class="sheet-body">
+    <div class="note"><span style="font-size:24px;">🧠</span><div class="note-text">Each gem is a tiny victory that delights the royal mind. Instead of one looming bedtime, the prince or princess earns one gem at a time — building the calm, triumphant momentum that makes the slumber ceremony feel like glory, not a siege.</div></div>
+    <div class="gem-grid" id="gemGrid"></div>
+  </div>
+</div>
+</div>
+
+
+<!-- ROYAL REPOSE (Breaks) -->
+<div class="page-wrap" id="page-repose">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,#040210,var(--court));">
+    <div class="header-tag" style="color:var(--emerald);">🌿 Royal Repose Chambers</div>
+    <div class="header-title" style="color:var(--white);">ROYAL<br><span style="color:var(--emerald);">Repose Protocols</span></div>
+    <div class="header-sub">When the ceremony becomes difficult — retreat to the Royal Repose Chamber. 3 minutes, then return.</div>
+    <div class="header-icon">🌿</div>
+  </div>
+  <div class="sheet-body">
+    <div class="note"><span style="font-size:24px;">🧠</span><div class="note-text">Repose protocols are not delaying the slumber — they are PART of the royal ceremony. Great rulers rest before great deeds. Three minutes in the Repose Chamber, then return to the Evening Ceremony.</div></div>
+    <div class="repose-grid">
+      <div class="repose-card" style="background:rgba(46,204,138,0.04);border-color:rgba(46,204,138,0.2);">
+        <span class="rp-icon">🌬️</span>
+        <div class="rp-title" style="color:var(--emerald);">Royal Breath</div>
+        <div class="rp-desc">Breathe in like you are filling a great hall — 4 counts. Hold like a guardian — 7. Release like a drawbridge lowering — 8. Repeat thrice.</div>
+      </div>
+      <div class="repose-card" style="background:rgba(91,184,255,0.04);border-color:rgba(91,184,255,0.2);">
+        <span class="rp-icon">🏰</span>
+        <div class="rp-title" style="color:var(--sapphire);">Castle Survey</div>
+        <div class="rp-desc">Lie still. Name 5 things you can see in the royal chamber. 4 sounds in the palace. 3 things you feel — pillow, warmth, the soft night air.</div>
+      </div>
+      <div class="repose-card" style="background:rgba(255,209,102,0.04);border-color:rgba(255,209,102,0.2);">
+        <span class="rp-icon">🛡️</span>
+        <div class="rp-title" style="color:var(--gold);">Armour Release</div>
+        <div class="rp-desc">Start at your toes — squeeze tight for 3, release. Move up — feet, legs, belly, hands, shoulders. Let the armour fall. You are at rest.</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- KINGDOM MAP -->
+<div class="page-wrap" id="page-kingdoms">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--deep));">
+    <div class="header-tag" style="color:var(--sapphire);">🗺️ Realm Progress Map</div>
+    <div class="header-title" style="color:var(--white);">KINGDOM<br><span style="color:var(--sapphire);">Map of Realms</span></div>
+    <div class="header-sub">Every 3 gems unlocks a new realm. Conquer all 8 to achieve the Coronation!</div>
+    <div class="header-icon">🗺️</div>
+  </div>
+  <div class="sheet-body">
+    <div class="note"><span style="font-size:24px;">🧠</span><div class="note-text">The darkened realms are OPEN QUESTS — the royal mind can already see the whole kingdom waiting to be claimed. This is the Zeigarnik Effect: incomplete quests create a compelling urge to finish them. The dark map IS the motivation to complete the ceremony.</div></div>
+
+    <div style="background:radial-gradient(ellipse at 50% 50%, rgba(255,209,102,0.05) 0%, var(--void) 70%);border-radius:8px;padding:24px;border:1px solid rgba(255,209,102,0.15);position:relative;overflow:hidden;" id="realmMap">
+      <div class="realm-grid" style="position:relative;z-index:2;">
+        <div class="realm-node lit" style="background:rgba(46,204,138,0.08);border-color:rgba(46,204,138,0.3);color:var(--emerald);" onclick="toggleRealm(this)"><span class="rn-icon">🪥</span><div class="rn-name">Cleanse Keep</div><div class="rn-pts">CLAIMED</div></div>
+        <div class="realm-node dark" style="background:rgba(91,184,255,0.06);border-color:rgba(91,184,255,0.2);color:var(--sapphire);" onclick="toggleRealm(this)"><span class="rn-icon">🧴</span><div class="rn-name">Wash Citadel</div><div class="rn-pts">3 💎</div></div>
+        <div class="realm-node dark" style="background:rgba(255,209,102,0.06);border-color:rgba(255,209,102,0.2);color:var(--gold);" onclick="toggleRealm(this)"><span class="rn-icon">🌙</span><div class="rn-name">Garment Tower</div><div class="rn-pts">6 💎</div></div>
+        <div class="realm-node dark" style="background:rgba(255,107,157,0.07);border-color:rgba(255,107,157,0.2);color:var(--rose);" onclick="toggleRealm(this)"><span class="rn-icon">📜</span><div class="rn-name">Silent Court</div><div class="rn-pts">9 💎</div></div>
+        <div class="realm-node dark" style="background:rgba(46,204,138,0.05);border-color:rgba(46,204,138,0.15);color:var(--emerald);" onclick="toggleRealm(this)"><span class="rn-icon">🛏️</span><div class="rn-name">Dream Fortress</div><div class="rn-pts">12 💎</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- HERALD'S SCRIPT -->
+<div class="page-wrap" id="page-herald">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--chamber));">
+    <div class="header-tag" style="color:var(--sapphire);">📜 Royal Herald's Language Guide</div>
+    <div class="header-title" style="color:var(--white);">HERALD'S<br><span style="color:var(--sapphire);">Script Guide</span></div>
+    <div class="header-sub">You are the Royal Herald — your calm tone is the signal the whole court follows</div>
+    <div class="header-icon">📢</div>
+  </div>
+  <div class="sheet-body">
+    <div class="scr-row">
+      <div class="scr-box" style="background:rgba(255,79,107,0.06);border-color:rgba(255,79,107,0.25);"><div class="scr-tag" style="color:var(--ruby);">❌ INSTEAD OF...</div><div class="scr-text">"It's bedtime — go now!"</div></div>
+      <div class="scr-arrow">→</div>
+      <div class="scr-box" style="background:rgba(46,204,138,0.04);border-color:rgba(46,204,138,0.2);"><div class="scr-tag" style="color:var(--emerald);">✅ ROYAL HERALD DECREES...</div><div class="scr-text">"Your Royal Highness — the evening ceremony begins. T-minus 60. Decree R-01: Royal Cleanse."</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ROYAL CHRONICLE -->
+<div class="page-wrap" id="page-chronicle">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--court));">
+    <div class="header-tag" style="color:var(--gold);">📅 Weekly Court Chronicle</div>
+    <div class="header-title" style="color:var(--white);">ROYAL<br><span style="color:var(--gold);">Chronicle</span></div>
+    <div class="header-sub">Track your 5-night royal week — celebrate every ceremony honoured</div>
+    <div class="header-icon">📊</div>
+  </div>
+  <div class="sheet-body">
+    <div class="chron-grid">
+      <div class="chron-col">
+        <div class="chron-head">MON</div>
+        <div class="chron-body">
+          <div class="chron-slot" onclick="toggleCb(this)"><div class="chron-cb"></div><div class="chron-sub">Cleanse</div></div>
+          <div class="chron-slot" onclick="toggleCb(this)"><div class="chron-cb"></div><div class="chron-sub">Wash</div></div>
+        </div>
+      </div>
+      <div class="chron-col">
+        <div class="chron-head">TUE</div>
+        <div class="chron-body">
+          <div class="chron-slot" onclick="toggleCb(this)"><div class="chron-cb"></div><div class="chron-sub">Cleanse</div></div>
+          <div class="chron-slot" onclick="toggleCb(this)"><div class="chron-cb"></div><div class="chron-sub">Wash</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- ROYAL SCROLLS -->
+<div class="page-wrap" id="page-scrolls">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--chamber));">
+    <div class="header-tag" style="color:var(--gold);">🏆 Royal Achievement Scrolls</div>
+    <div class="header-title" style="color:var(--white);">ROYAL<br><span style="color:var(--gold);">Scrolls</span></div>
+    <div class="header-sub">Print, seal with wax, and present — every scroll is earned, not simply given</div>
+    <div class="header-icon">🎖️</div>
+  </div>
+  <div class="sheet-body">
+    <div class="scroll">
+      <div class="scroll-badge-icon">👑</div>
+      <div class="scroll-label">The Royal Palace™ · Evening Ceremony Protocol</div>
+      <div class="scroll-title">CORONATION ACHIEVED</div>
+      <div class="scroll-sub">This royal scroll is bestowed upon</div>
+      <div class="scroll-name-line" contenteditable="true"></div>
+      <div class="scroll-name-label">Prince or Princess's Name</div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- COURT BRIEF -->
+<div class="page-wrap" id="page-brief">
+<div class="sheet">
+  <div class="sheet-header" style="background:linear-gradient(135deg,var(--void),var(--chamber));">
+    <div class="header-tag" style="color:var(--gold);">📖 Royal Herald's Classified Briefing</div>
+    <div class="header-title" style="color:var(--white);">COURT<br><span style="color:var(--gold);">Brief</span></div>
+    <div class="header-sub">Everything the herald needs to run The Royal Palace™ in under 10 minutes</div>
+    <div class="header-icon">🧰</div>
+  </div>
+  <div class="sheet-body">
+    <div style="background:rgba(46,204,138,0.04);border:1px solid rgba(46,204,138,0.18);border-radius:6px;padding:18px 20px;">
+      <div style="font-family:'Cinzel',serif;font-size:12px;font-weight:700;letter-spacing:2.5px;color:var(--emerald);text-transform:uppercase;margin-bottom:10px;">🏰 The Royal Decree</div>
+      <div style="font-family:'Crimson Pro',serif;font-size:14px;font-weight:400;color:rgba(255,255,255,0.65);line-height:1.85;">The bedroom is a royal chamber in a great castle. The child is the prince or princess. Each bedtime task is a step in the Evening Ceremony. Every deed earns a gem. Every 3 gems claims a new realm. Claim all 8 realms and the Coronation is achieved.</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+  function showPage(id, btn) {
+    document.querySelectorAll('.page-wrap').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    if (btn) btn.classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  let stepsDone = 0;
+  function toggleStep(el) {
+    const was = el.classList.contains('complete');
+    el.classList.toggle('complete');
+    const cb = el.querySelector('.rs-check');
+    cb.textContent = el.classList.contains('complete') ? '✓' : '';
+    stepsDone += was ? -1 : 1;
+    stepsDone = Math.max(0, stepsDone);
+    const bar = document.getElementById('powerBar');
+    const lbl = document.getElementById('powerLabel');
+    const pct = Math.round((stepsDone / 6) * 100);
+    if (bar) bar.style.width = pct + '%';
+    if (lbl) lbl.textContent = pct + '% / 100%';
+  }
+
+  function cycleHerald(el) {
+    const sts = el.querySelector('.hr-status');
+    const arr = ['◉ AWAITING', '▶ IN PROGRESS', '✓ HONOURED'];
+    const cls = ['var(--mist)', 'var(--emerald)', 'var(--gold)'];
+    const cur = arr.indexOf(sts.textContent.trim());
+    const nxt = (cur + 1) % arr.length;
+    sts.textContent = arr[nxt];
+    sts.style.color = cls[nxt];
+  }
+
+  function toggleRealm(el) {
+    el.classList.toggle('dark');
+    el.classList.toggle('lit');
+  }
+
+  function selectQuest(q) {
+    document.getElementById('princeQuest').innerText = q;
+    document.getElementById('princessQuest').innerText = q;
+  }
+
+  function toggleCb(el) {
+    el.querySelector('.chron-cb').classList.toggle('checked');
+  }
+
+  // Gem token grid generator
+  const gg = document.getElementById('gemGrid');
+  if (gg) {
+    const labels = ['Cleanse','Chamber','Garments','Court Off','Chambers','Tales'];
+    const icons = ['🪥','🧴','🌙','📜','🛏️','📖'];
+    for (let i = 0; i < 24; i++) {
+      const t = document.createElement('div');
+      t.className = 'gem-token';
+      t.innerHTML = `<div class="gt-icon">${icons[i % icons.length]}</div><div class="gt-label">${labels[i % labels.length]}</div>`;
+      t.onclick = function() { this.classList.toggle('lit'); }
+      gg.appendChild(t);
+    }
+  }
+</script>
+</body>
+</html>
